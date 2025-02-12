@@ -9,26 +9,50 @@
 
 ---
 
-Le fichier docker-compose.yml définit plusieurs services :
+## Services définis dans `docker-compose.yml`
 
-🖥️ Service web (Serveur Apache + PHP)
-Construit l’image à partir du Dockerfile dans le répertoire actuel (build: .).
-Expose le port 8080 pour accéder au serveur web (8080:80).
-Monteur un volume pour synchroniser les fichiers locaux avec /var/www/html dans le conteneur, permettant un développement en temps réel.
-🗄️ Service db (Base de données MySQL)
-Utilise l’image officielle mysql:8.
-Définit un mot de passe root et crée la base test_db.
-Monte un volume persistant db_data pour éviter la perte de données si le conteneur est arrêté.
-Expose le port 3306 pour permettre à d’autres services d’accéder à la base.
-🌍 Service phpmyadmin (Interface de gestion MySQL)
-Utilise l’image phpmyadmin/phpmyadmin pour accéder et gérer la base.
-Se connecte au service db via PMA_HOST: db.
-Accessible sur le port 8081 (http://localhost:8081).
-📝 Service vscode (Éditeur Code Server)
-Utilise l’image codercom/code-server, qui permet d’accéder à VS Code dans le navigateur.
-Sécurisé par un mot de passe (PASSWORD=monpassword).
-Monte le volume ./src pour éditer les fichiers PHP directement.
-Accessible sur http://localhost:8082.
+### 🖥️ Service web (Serveur Apache + PHP)
+- **Image** : Construction à partir du Dockerfile local (`build: .`).
+- **Ports** : Expose le port `8080` pour accéder au serveur web (liens : `8080:80`).
+- **Volumes** : Synchronise les fichiers locaux avec `/var/www/html` dans le conteneur, permettant un développement en temps réel.
+
+### 🗄️ Service db (Base de données MySQL)
+- **Image** : Utilisation de l’image officielle `mysql:8`.
+- **Configuration** :
+  - Mot de passe `root` : `root`.
+  - Base de données : `test_db` (créée au démarrage).
+  - Volume persistant `db_data` pour éviter la perte de données.
+  - Expose le port `3306` pour l'accès à la base de données.
+
+### 🌍 Service phpmyadmin (Interface de gestion MySQL)
+- **Image** : `phpmyadmin/phpmyadmin`.
+- **Connexion** : Se connecte au service `db` via `PMA_HOST: db`.
+- **Port** : Accessible sur `http://localhost:8081`.
+
+### 📝 Service vscode (Éditeur Code Server)
+- **Image** : `codercom/code-server`.
+- **Accès sécurisé** : Mot de passe `monpassword`.
+- **Volume** : Monte le volume `./src` pour éditer les fichiers PHP directement.
+- **Port** : Accessible sur `http://localhost:8082`.
+
+## Création et Alimentation de la Base de Données via PhpMyAdmin
+
+### 📌 Accès à PhpMyAdmin
+- Après avoir démarré les services avec `docker-compose up -d`, accédez à PhpMyAdmin via l'URL suivante :  
+  [http://localhost:8081](http://localhost:8081)
+
+### 📌 Connexion à la Base de Données
+- **Serveur MySQL** : `db`
+- **Utilisateur** : `root`
+- **Mot de passe** : `root`
+- **Nom de la base** : `egypto`
+
+### 📌 Création de la Base de Données
+Dans PhpMyAdmin, créez la base de données `egypto` en exécutant la requête SQL suivante :
+
+```sql
+CREATE DATABASE EGYPTO;
+USE egypto;
 
  Création et Alimentation de la Base de Données via PhpMyAdmin
 📌 Accès à PhpMyAdmin
