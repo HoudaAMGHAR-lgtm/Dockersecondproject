@@ -1,10 +1,13 @@
-Déploiement d'un site web en PHP qui interagit avec une base PhpMyAdmin sur un serveur Docker
-PARTICIPANTS :
-Houda AMGHAR
-Thinhinane SADOU
-Ouerdia KACED
-Abdelhak BENADJAOUD
-Djamel OULD SAADI
+# 🖥️ Déploiement d’un site web en PHP avec MySQL et PhpMyAdmin sous Docker
+
+## 📌 Participants  
+- **Houda AMGHAR**  
+- **Thinhinane SADOU**  
+- **Ouerdia KACED**  
+- **Abdelhak BENADJAOUD**  
+- **Djamel OULD SAADI**  
+
+---
 
 Le fichier docker-compose.yml définit plusieurs services :
 
